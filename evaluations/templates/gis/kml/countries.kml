@@ -1,0 +1,10 @@
+{% extends "gis/kml/base.kml" %}
+{% block placemarks %}{% for country in countries %}
+  <Placemark>
+    <name>{% if country.name %}{{ country.name }}{% else %}{{ country }}{% endif %}</name>
+    <description>{% if country.desk_study %}desk{% else %}not_desk{% endif %}</description>
+    <country_id>{{ country.id }}</country_id>
+    <desk_study>{{ country.desk_study }}</desk_study>
+    {{ country.kml|safe }}
+  </Placemark>{% endfor %}{% endblock %}
+
