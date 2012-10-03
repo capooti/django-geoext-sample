@@ -14,14 +14,16 @@ class CountryAdmin(OSMGeoAdmin):
     """
     model = Country
     list_per_page = 20
-    list_display = ['name', 'regional_bureaux', 'desk_study', 'country_visit', 'planned', 'planning_date',]
-    search_fields = ['name', 'regional_bureaux', 'desk_study', 'country_visit', 'planned']
-    list_filter = ['regional_bureaux', 'desk_study', 'country_visit', 'planned', ]
+    list_display = ['name', 'regional_bureaux', 'desk_study', 'country_visit', 
+        'planned', 'planning_date',]
+    search_fields = ['name', 'regional_bureaux', 'desk_study', 'country_visit', 
+        'planned']
+    list_filter = ['regional_bureaux', 'desk_study', 'country_visit', 
+        'planned', ]
     date_hierarchy = 'planning_date'
     # Openlayers settings
     map_width = 500
     map_height = 500
-    #openlayers_url = '/static/openlayers/lib/OpenLayers.js'
     default_zoom = 18
 
 class EvaluationAdmin(admin.ModelAdmin):

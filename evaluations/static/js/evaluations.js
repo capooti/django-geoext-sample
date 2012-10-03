@@ -1,9 +1,9 @@
-var mapPanel, store, gridPanel, mainPanel;
-
 Ext.onReady(function() {
     
-    // create map instance
-    var map = new OpenLayers.Map();
+    var map, mapPanel, gridPanel, mainPanel;
+    
+    // create the map instance
+    map = new OpenLayers.Map();
     var wmsLayer = new OpenLayers.Layer.WMS(
         "vmap0",
         "http://vmap0.tiles.osgeo.org/wms/vmap0",
@@ -38,13 +38,14 @@ Ext.onReady(function() {
     var selectStyle = new OpenLayers.Style({
         fillColor: "#ffff00"
     });
-    country_style_Map = new OpenLayers.StyleMap({
+    var country_style_Map = new OpenLayers.StyleMap({
         'default': country_style,
         'select': selectStyle});
     
-    // create vector layer
+    // create the vector layer
     var vecLayer = new OpenLayers.Layer.Vector("vector", { styleMap: country_style_Map });
     map.addLayers([wmsLayer, vecLayer]);
+    
     // create the select feature for vector layer
     var select_options = {
         onSelect : getInfo
@@ -53,7 +54,7 @@ Ext.onReady(function() {
     map.addControl(select);
     select.activate();
 
-    // create map panel
+    // create the map panel
     mapPanel = new GeoExt.MapPanel({
         title: 'Map',
         region: 'center',
@@ -80,8 +81,8 @@ Ext.onReady(function() {
     });
     
     // create the data store
-    store = new Ext.data.JsonStore({
-        url: 'per-country/320/json',
+    var store = new Ext.data.JsonStore({
+        url: 'per-country/-1/json',
         fields: [
             {name: 'id', type: 'int'}, 'title', 'date', 'country', 'evaluation_type', 'link'
         ]
@@ -89,7 +90,7 @@ Ext.onReady(function() {
     store.load();
 
     // create a grid to display records from the store
-    var gridPanel = new Ext.grid.GridPanel({
+    gridPanel = new Ext.grid.GridPanel({
         title: "Evaluations",
         store: store,
         columns: [

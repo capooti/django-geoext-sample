@@ -22,7 +22,8 @@ class Country(gismodels.Model):
     )
     # attributes
     name = gismodels.CharField(max_length=255)
-    regional_bureaux = gismodels.CharField(null=True, blank=True, max_length=3, choices=REGIONAL_BUREAU_CHOICES)
+    regional_bureaux = gismodels.CharField(null=True, blank=True, max_length=3, 
+        choices=REGIONAL_BUREAU_CHOICES)
     desk_study = gismodels.NullBooleanField()
     country_visit = gismodels.NullBooleanField()
     planned = gismodels.NullBooleanField()
@@ -49,9 +50,12 @@ class Evaluation(gismodels.Model):
     # attributes
     title = models.CharField(max_length=255)
     date = models.DateField()
-    evaluation_type = models.CharField(max_length=3, choices=EVALUTATION_TYPE_CHOICES)
+    evaluation_type = models.CharField(max_length=3, 
+        choices=EVALUTATION_TYPE_CHOICES)
     link = models.URLField(max_length=255)
+    # fk
     country = models.ForeignKey(Country)
 
     def __unicode__(self):
         return '%s' % (self.title)
+

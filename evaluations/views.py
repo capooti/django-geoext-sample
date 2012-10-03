@@ -7,19 +7,15 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.gis.shortcuts import render_to_kml
-from models import Country, Evaluation
-from django.utils import simplejson
-from django.core import serializers
 from django.core.exceptions import ObjectDoesNotExist
 import json
+from models import Country, Evaluation
 
 def map_view(request):
     """
     Map view for evaluations.
     """
-    return render_to_response('evaluations/map.html', 
-        {
-        },
+    return render_to_response('evaluations/map.html', {},
         context_instance=RequestContext(request))
         
 def get_kml_countries(request):
@@ -50,6 +46,5 @@ def get_evaluations_json(request, country_id):
     except ObjectDoesNotExist:
         print 'There is not such a country'
     eva_json = json.dumps(eva_list)
-    print eva_json
     return HttpResponse(eva_json, mimetype='application/json')
 
