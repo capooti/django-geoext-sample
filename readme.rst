@@ -32,12 +32,13 @@ One Country may have 0 to many evaluations. The application let the user to edit
     
 * for importing the shapefile you could use ogr2ogr as well::
 
-    $ ogr2ogr -append -f PostgreSQL -sql "SELECT NAME AS name FROM 'countries'" -nlt MULTIPOLYGON PG:"dbname='evaluations' user='wfp' password='mypassword'" -nln evaluations_country evaluations/data/countries.sh
+    $ ogr2ogr -append -f PostgreSQL -sql "SELECT NAME AS name FROM 'countries'" -nlt MULTIPOLYGON PG:"dbname='evaluations' user='myuser' password='mypassword'" -nln evaluations_country evaluations/data/countries.sh
 
 * Run the development server::
 
     $ ./manage runserver
 
-* Add some evaluation entities via the admin interface: http://localhost:8000/admin/
+* Add some evaluation entities and modify country information via the admin interface: http://localhost:8000/admin/
 
-* Now navigate to the front end and test the application: http://localhost:8000/evaluations/map
+* Then navigate to the front end and test the application: http://localhost:8000/evaluations/map
+
