@@ -44,14 +44,16 @@ def generate_random_test_data():
             e.country = country
             start_date = date.today().replace(day=1, month=1).toordinal()
             end_date = date.today().toordinal()
-            random_date = date.fromordinal(random.randint(start_date, end_date))
-            print random_date
-            e.date = random_date
+            e.date = date.fromordinal(random.randint(start_date, end_date))
             e.link = 'http://example.com/%s/%s' % (country.name, i)
             e.evaluation_type = random.choice(Evaluation.EVALUTATION_TYPE_CHOICES)[0]
             e.save()
-            # update country with random
+            # update country fields with random values
+            country.regional_bureaux = random.choice(Country.REGIONAL_BUREAU_CHOICES)[0]
             country.desk_study = random.choice([True, False])
+            country.country_visit = random.choice([True, False])
+            country.planned = random.choice([True, False])
+            country.planning_date = date.fromordinal(random.randint(start_date, end_date))
             country.save()
 
 
