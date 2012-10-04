@@ -4,19 +4,17 @@
 Views for the application.
 """
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.contrib.gis.shortcuts import render_to_kml
 from django.core.exceptions import ObjectDoesNotExist
 import json
 from models import Country, Evaluation
 
-def map_view(request):
+def get_map(request):
     """
     Map view for evaluations.
     """
-    return render_to_response('evaluations/map.html', {},
-        context_instance=RequestContext(request))
+    return render(request, 'evaluations/map.html')
         
 def get_kml_countries(request):
     """

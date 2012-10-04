@@ -7,7 +7,7 @@ from django.conf.urls.defaults import *
 import views
 
 urlpatterns = patterns('',
-    url(r'^map$', views.map_view, name='evaluations-map-view'),
+    url(r'^map$', views.get_map, name='evaluations-map-view'),
     url(r'^countries/kml$', views.get_kml_countries,
         name='evaluations-countries-kml'),
     url(r'^per-country/(?P<country_id>\d+)/json$', views.get_evaluations_json, 
